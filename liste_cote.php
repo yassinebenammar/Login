@@ -7,28 +7,6 @@
     <title>Document</title>
 </head>
 
-<?php
-    require('conn.php');
-    if (isset($_POST["submit"])) {
-        if (isset($_POST['Username'], $_POST['Password'])) {
-            if ($_POST['Password'] != "" && $_POST['Username'] != "") {
-                $insertion = "INSERT INTO Login (Username,Password) VALUES($nom, $pass )";
-                
-                $nom = $_POST['Username'];
-                $pass = $_POST['Password'];
-    
-                $execute = $pdo->query($insertion);
-                if ($execute == true) {
-                    $msgSucce = "Information enregistrer avec succès";
-                }else{
-                    $msgrefuse = "L'enregistrement n'apas etre effectué";
-                }
-            }
-        }
-    }
-
-?>
-
 <body>
     <!--nav class="menu">
         <span class="close-btn"> X</span>
@@ -54,23 +32,13 @@
     </div>
     <h1>Login</h1>
     <div class="formulaire">
-        <div>
-            <?php
-                if (isset($msgrefuse)) {
-                    echo $msgrefuse;
-                } elseif (isset($msgSucce)) {
-                    echo $msgSucce;
-                }
-                
-
-            ?>
-        </div>
-        <form action="conn.php" method="post">
+        
+        <form action="conn.php" method="POST">
             <p>Username</p>
-            <input type="text" placeholder="Username">
+            <input type="text" placeholder="username" name="username">
             <p>Password</p>
-            <input type="password" placeholder="Password"><br><br>
-            <input type="submit" id="submit" value="Envoyer">
+            <input type="password" placeholder="password" name="password"><br><br>
+            <button type="submit" value="Envoyer">Send</button>
         </form>
     </div>
         
